@@ -33,5 +33,6 @@ Route::post('/item/update/{id}', 'ItemController@update');
 Route::resource('item', 'ItemController');
 
 
-Route::get('/cash', 'RegisterController@index');
-Route::post('/cash/store', 'RegisterController@store');
+Route::get('/cash', 'CashController@index');
+Route::get('/cash/edit', 'CashController@edit');
+Route::post('/cash/store', 'CashController@store');

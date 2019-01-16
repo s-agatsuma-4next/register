@@ -3,21 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
+        <ul class="list-group">
+            <li class="list-group-item"><a href="/cash"><i class="fas fa-edit"></i> お会計</a></li>
+            <li class="list-group-item"><a href="/item"><i class="fas fa-edit"></i> 商品登録</a></li>
+            <li class="list-group-item"><a href="/cash"><i class="fas fa-edit"></i> データ修正</a></li>
+            <li class="list-group-item"><a href="/cash"><i class="fas fa-edit"></i> データ検索</a></li>
+        </ul>
     </div>
 </div>
 @endsection

@@ -24,7 +24,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel sticky-top">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/cash') }}">
                     <i class="fas fa-cat"></i>
 
                     {{ config('app.name', 'Laravel') }}
@@ -47,18 +47,30 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    メニュー<span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/cash"><i class="fas fa-cash-register"></i> お会計</a>
+                                    <a class="dropdown-item" href="/cash/edit"><i class="fas fa-edit"></i> 販売データ修正</a>
+                                    <a class="dropdown-item" href="/cash/search"><i class="fas fa-search-dollar"></i> 売り上げ検索</a>
+                                    <a class="dropdown-item" href="/item"><i class="fas fa-coffee"></i> 商品登録</a>
+                                    @if (Auth::user()->is_admin)
+                                        <a class="dropdown-item" href="{{ route('register') }}"><i class="fas fa-user"></i> 新規ユーザー作成</a>
+                                    @endif
+                                 </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}<span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <i class="fas fa-sign-out-alt"></i> ログアウト
                                     </a>
-                                    @if (Auth::user()->is_admin)
-                                        <a class="dropdown-item" href="{{ route('register') }}">新規ユーザー作成</a>
-                                    @endif
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

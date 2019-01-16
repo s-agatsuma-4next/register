@@ -10,14 +10,14 @@ use App\Customer;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class RegisterController extends Controller
+class CashController extends Controller
 {
     protected $item;
     protected $sales;
     protected $customer;
 
     public function __construct(Item $item, Sales $sales, Customer $customer){
-        //$this->middleware('auth');
+        $this->middleware('auth');
         $this->item = $item;
         $this->sales = $sales;
         $this->customer = $customer;
@@ -30,7 +30,7 @@ class RegisterController extends Controller
     public function index()
     {
         $items = $this->item::where('valid', 1)->orderBy('price', 'asc')->get();
-        return view('register.index')->with(compact('items'));
+        return view('cash.index')->with(compact('items'));
     }
 
     public function store(Request $request)
@@ -49,14 +49,21 @@ class RegisterController extends Controller
             }
             $this->sales->fill([
                 'customer_id' => $customer_id,
-                'register' => Auth::user()->id,
+                'register' => 1, // TODO : Auth::user()->id,
                 'item_id' => $key,
                 'price' => $request->price[$key],
                 'count' => $count,
                 'tax_rate' => $request->tax,
             ]);
+
+            $this->sales->save();
         }
         return redirect()->to('/cash');
 
+    }
+
+    public function edit(){
+        $sales = $this->sales->all();
+        return view('cash.edit')->with(compact('sales'));
     }
 }
