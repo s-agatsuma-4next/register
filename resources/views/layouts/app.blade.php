@@ -16,6 +16,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/favicon.png">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -25,7 +26,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/cash') }}">
-                    <i class="fas fa-cat"></i>
+                    <i class="fab fa-github-alt"></i>
 
                     {{ config('app.name', 'Laravel') }}
                 </a>
