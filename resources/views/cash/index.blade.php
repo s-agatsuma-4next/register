@@ -12,38 +12,40 @@
         @endif
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <div class="container body">
-            <h3 class="page-header">お客様情報</h3>
-            <div class="form-group ">
-                <div class="btn-group btn-group-toggle mr-2" data-toggle="buttons">
-                    <label class="btn btn-outline-primary active">
-                        <input name="sex" type="radio" autocomplete="off" value="F" checked> 女性
-                    </label>
-                    <label class="btn btn-outline-primary">
-                        <input name="sex" type="radio" autocomplete="off" value="M"> 男性
-                    </label>
-                </div>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-success">
-                        <input name="age" type="radio" autocomplete="off" value="10"> 10代
-                    </label>
-                    <label class="btn btn-outline-success">
-                        <input name="age" type="radio" autocomplete="off" value="20"> 20代
-                    </label>
-                    <label class="btn btn-outline-success">
-                        <input name="age" type="radio" autocomplete="off" value="30"> 30代
-                    </label>
-                    <label class="btn btn-outline-success active">
-                        <input name="age" type="radio" autocomplete="off" value="40" checked> 40代
-                    </label>
-                    <label class="btn btn-outline-success">
-                        <input name="age" type="radio" autocomplete="off" value="50"> 50代
-                    </label>
-                    <label class="btn btn-outline-success">
-                        <input name="age" type="radio" autocomplete="off" value="60"> 60代
-                    </label>
-                    <label class="btn btn-outline-success">
-                        <input name="age" type="radio" autocomplete="off" value="70"> 70代
-                    </label>
+            <div class="mb-4">
+                <h3 class="page-header">お客様情報</h3>
+                <div class="form-group ">
+                    <div class="btn-group btn-group-toggle mr-2" data-toggle="buttons">
+                        <label class="btn btn-outline-primary active">
+                            <input name="sex" type="radio" autocomplete="off" value="F" checked> 女性
+                        </label>
+                        <label class="btn btn-outline-primary">
+                            <input name="sex" type="radio" autocomplete="off" value="M"> 男性
+                        </label>
+                    </div>
+                    <div class="btn-group btn-group-toggle " data-toggle="buttons">
+                        <label class="btn btn-outline-success">
+                            <input name="age" type="radio" autocomplete="off" value="10"> 10代
+                        </label>
+                        <label class="btn btn-outline-success">
+                            <input name="age" type="radio" autocomplete="off" value="20"> 20代
+                        </label>
+                        <label class="btn btn-outline-success">
+                            <input name="age" type="radio" autocomplete="off" value="30"> 30代
+                        </label>
+                        <label class="btn btn-outline-success active">
+                            <input name="age" type="radio" autocomplete="off" value="40" checked> 40代
+                        </label>
+                        <label class="btn btn-outline-success">
+                            <input name="age" type="radio" autocomplete="off" value="50"> 50代
+                        </label>
+                        <label class="btn btn-outline-success">
+                            <input name="age" type="radio" autocomplete="off" value="60"> 60代
+                        </label>
+                        <label class="btn btn-outline-success">
+                            <input name="age" type="radio" autocomplete="off" value="70"> 70代
+                        </label>
+                    </div>
                 </div>
             </div>
             <h3 class="page-header">お買い上げ</h3>
@@ -75,19 +77,19 @@
                     <div class="d-flex mt-2">
                         <div class="form-group col-md-2">
                             <label>消費税（%）</label>
-                            <input type="number" name="tax" value="8" class="form-control"/>
+                            <input type="number" name="tax" value="8" required="required" class="form-control" />
                         </div>
                         <div class="form-group  col-md-2">
                             <label>お会計</label>
-                            <input type="number" name="total_price" value="" class="form-control"/>
+                            <input type="number" name="total_price" value="" required="required" class="form-control" readonly/>
                         </div>
                         <div class="form-group col-md-2">
                             <label>お預かり</label>
-                            <input type="number" name="acceptance" value="" class="form-control"/>
+                            <input type="number" name="acceptance" value="" required="required" class="form-control"/>
                         </div>
                         <div class="form-group col-md-2">
                             <label>おつり</label>
-                            <input type="number" name="change" value="" class="form-control"/>
+                            <input type="number" name="change" value="" required="required" class="form-control" readonly/>
                         </div>
                         <div class="form-group align-self-end">
                             <button type="submit" class="btn btn-danger"><i class="fas fa-cash-register"></i> お会計</button>
