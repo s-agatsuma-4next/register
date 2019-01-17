@@ -9,8 +9,8 @@
                 <th>名称</th>
                 <th>価格</th>
                 <th>個数</th>
-                <th>作成日時</th>
-                <th>更新日時</th>
+                <th>販売日時</th>
+                <th>登録</th>
                 <th></th>
             </tr>
             </thead>
@@ -21,7 +21,7 @@
                     <td>{{{ $sale->price }}}</td>
                     <td>{{{ $sale->count}}}</td>
                     <td>{{{ $sale->created_at }}}</td>
-                    <td>{{{ $sale->updated_at }}}</td>
+                    <td>{{{ App\User::find($sale->register)->name }}}</td>
                     <td>
                         <a href="/cash/destroy/{{{ $sale->id }}}" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> 削除</a>
                     </td>

@@ -16,33 +16,18 @@ class ItemController extends Controller
         $this->item = $item;
     }
 
-    /**
-     * Display a listing of the resource.
-     * 一覧
-     * @return Response
-     */
     public function index()
     {
         $items = $this->item->all();
         return view('item.index')->with(compact('items'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * 新規作成
-     * @return Response
-     */
     public function create()
     {
         // 新規登録画面を表示
         return view('item.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * 新規登録
-     * @return Response
-     */
     public function store(Request $request)
     {
         // パラメータを取得して保存
@@ -54,12 +39,6 @@ class ItemController extends Controller
         return redirect()->to('/item');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * 編集
-     * @param  int  $id
-     * @return Response
-     */
     public function edit($id)
     {
         $item = $this->item->find($id);
@@ -67,12 +46,6 @@ class ItemController extends Controller
         return view('item.edit')->with('item', $item);
     }
 
-    /**
-     * Update the specified resource in storage.
-     * 更新
-     * @param  int  $id
-     * @return Response
-     */
     public function update(Request $request, $id)
     {
         //
@@ -84,12 +57,6 @@ class ItemController extends Controller
         return redirect()->to('/item');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * 削除
-     * @param  int  $id
-     * @return Response
-     */
     public function destroy($id)
     {
         $item = $this->item->find($id);

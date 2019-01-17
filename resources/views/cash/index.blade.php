@@ -1,7 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <form name="form1" action="/cash/store" method="post">
+    <form name="form1" action="/cash/store" method="post" id="submit">
+        {{-- フラッシュ・メッセージ --}}
+        @if (session('my_status'))
+            <div class="container mt-2" id="msg-success">
+                <div class="alert alert-success">
+                    {{ session('my_status') }}
+                </div>
+            </div>
+        @endif
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <div class="container body">
             <h3 class="page-header">お客様情報</h3>
@@ -122,7 +130,17 @@
         $('input[name="acceptance"]').change(function () {
             $('input[name="change"]').val($(this).val() - $('input[name="total_price"]').val());
         });
+
+        $('#submit').submit(function () {
+            return confirm("お会計を実行します");
+        });
+
+        if($('#msg-success').length){
+            setTimeout(function(){
+                $('#msg-success').fadeOut('fast').queue(function() {
+                    this.remove();
+                });
+            }, 5000);
+        }
     });
-
-
 </script>

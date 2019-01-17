@@ -23,14 +23,11 @@ class CashController extends Controller
         $this->customer = $customer;
     }
 
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
     public function index()
     {
         $items = $this->item::where('valid', 1)->orderBy('price', 'asc')->get();
         return view('cash.index')->with(compact('items'));
+
     }
 
     public function store(Request $request)
@@ -47,23 +44,31 @@ class CashController extends Controller
             if(0 === intval($count)){
                 continue;
             }
-            $this->sales->fill([
+            $sales = new Sales;
+            $sales->fill([
                 'customer_id' => $customer_id,
-                'register' => 1, // TODO : Auth::user()->id,
+                'register' => \Auth::user()->id,
                 'item_id' => $key,
                 'price' => $request->price[$key],
                 'count' => $count,
                 'tax_rate' => $request->tax,
             ]);
-
-            $this->sales->save();
+            $sales->save();
         }
-        return redirect()->to('/cash');
+        return redirect()->to('/cash')->with('my_status', __('お会計が完了しました'));
 
     }
 
     public function edit(){
-        $sales = $this->sales->all();
+        $sales = $this->sales->orderBy('created_at', 'desc')->get();
         return view('cash.edit')->with(compact('sales'));
+    }
+
+    public function destroy($id)
+    {
+        $sales = $this->sales->find($id);
+        $sales->delete();
+
+        return redirect()->to('/cash/edit');
     }
 }
