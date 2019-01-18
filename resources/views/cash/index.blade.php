@@ -100,7 +100,6 @@
             </footer>
         </div>
     </form>
-@endsection
 <style>
     .body {
         height: auto;
@@ -108,9 +107,7 @@
     }
 </style>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script>
+<script type="text/javascript">
     $(document).ready(function () {
         /**
          * 価格計算
@@ -146,3 +143,4 @@
         }
     });
 </script>
+@endsection

@@ -45,11 +45,12 @@ class CashController extends Controller
                 continue;
             }
             $sales = new Sales;
+            $price = (int)($request->price[$key] * (1 + $request->tax/100));
             $sales->fill([
                 'customer_id' => $customer_id,
                 'register' => \Auth::user()->id,
                 'item_id' => $key,
-                'price' => $request->price[$key],
+                'price' => $price,
                 'count' => $count,
                 'tax_rate' => $request->tax,
             ]);

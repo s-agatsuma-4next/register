@@ -37,3 +37,5 @@ Route::get('/cash', 'CashController@index');
 Route::get('/cash/edit', 'CashController@edit');
 Route::post('/cash/store', 'CashController@store');
 Route::get('/cash/destroy/{id}', 'CashController@destroy');
+
+Route::get('/search/daily/{id}', 'SearchController@daily');

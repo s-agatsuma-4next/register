@@ -12,6 +12,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -54,7 +56,8 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/cash"><i class="fas fa-cash-register"></i> お会計</a>
                                     <a class="dropdown-item" href="/cash/edit"><i class="fas fa-edit"></i> 販売データ修正</a>
-                                    <a class="dropdown-item" href="/cash/search"><i class="fas fa-search-dollar"></i> 売り上げ検索</a>
+                                    <a class="dropdown-item" href="/search/daily/{{ date("Y-m-d") }}"><i class="fas fa-search-dollar"></i> 売り上げ検索（日）</a>
+                                    <a class="dropdown-item" href="/cash/search"><i class="fas fa-search-dollar"></i> 売り上げ検索（月）</a>
                                     <a class="dropdown-item" href="/item"><i class="fas fa-coffee"></i> 商品登録</a>
                                     @if (Auth::user()->is_admin)
                                         <a class="dropdown-item" href="{{ route('register') }}"><i class="fas fa-user"></i> 新規ユーザー作成</a>
@@ -89,7 +92,6 @@
     </div>
 </body>
 </html>
-
 <style>
     footer{
         background:#fff;
