@@ -9,6 +9,7 @@ use App\Sales;
 use App\Customer;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Config;
 
 class CashController extends Controller
 {
@@ -45,12 +46,11 @@ class CashController extends Controller
                 continue;
             }
             $sales = new Sales;
-            $price = (int)($request->price[$key] * (1 + $request->tax/100));
             $sales->fill([
                 'customer_id' => $customer_id,
                 'register' => \Auth::user()->id,
                 'item_id' => $key,
-                'price' => $price,
+                'price' => $request->price[$key] ,
                 'count' => $count,
                 'tax_rate' => $request->tax,
             ]);
