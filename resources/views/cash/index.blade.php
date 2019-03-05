@@ -11,6 +11,9 @@
             </div>
         @endif
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+        <input type="hidden" id="epson_ip_address" value="<?php echo config('epson.ip_address'); ?>">
+        <input type="hidden" id="epson_ip_port" value="<?php echo config('epson.port'); ?>">
+        <input type="hidden" id="epson_device_id" value="<?php echo config('epson.device_id'); ?>">
         <div class="container body">
             <div class="mb-4">
                 <h3 class="page-header">お客様情報</h3>
@@ -109,6 +112,27 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        var ePosDev = new epson.ePOSDevice();
+        connect();
+        /**
+         * レシートプリンタとコネクション確立
+         */
+        function connect() {
+            var ipAddress = $('#epson_ip_address').val();
+            var port = $('#epson_ip_port').val();
+
+            alert(2);
+            ePosDev.connect(ipAddress, port, callback_connect);
+        }
+
+        /**
+         * TODO デバイス購入後に実装する
+         */
+        function callback_connect(resultConnect){
+            // 現状エラータイムアウトが返る
+            alert(resultConnect);
+        }
+
         /**
          * 価格計算
          */
