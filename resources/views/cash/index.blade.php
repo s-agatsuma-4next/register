@@ -65,7 +65,7 @@
                     <tr>
                         <td>{{{ $item->name }}}</td>
                         <td>
-                            <input type="number" name="price[{{{ $item->id }}}]" value="{{{ $item->price }}}" data-id="{{{ $item->id }}}" required="required" style="width:150px;" class="form-control"/>
+                            <input type="number" name="price[{{{ $item->id }}}]" value="{{{ $item->price * (100 + config('cash.tax')) / 100 }}}" data-id="{{{ $item->id }}}" required="required" style="width:150px;" class="form-control"/>
                         </td>
                         <td>
                             <input type="number" name="count[{{{ $item->id }}}]" value="0" data-id="{{{ $item->id }}}" required="required" style="width:100px;" class="form-control"/>
@@ -80,7 +80,7 @@
                     <div class="d-flex mt-2">
                         <div class="form-group col-md-2">
                             <label>消費税（%）</label>
-                            <input type="number" name="tax" value="8" required="required" class="form-control" />
+                            <input type="number" name="tax" value="<?php echo config('cash.tax'); ?>" required="required" class="form-control" readonly/>
                         </div>
                         <div class="form-group  col-md-2">
                             <label>お会計</label>
@@ -137,17 +137,13 @@
          * 価格計算
          */
         $('input[name^="count"],input[name^="price"]').change(function () {
-            if ($('input[name="tax"]').val() == '') {
-                return false;
-            }
             var total_price = 0;
-            var tax = (100 + Number($('input[name="tax"]').val())) / 100;
 
             $('input[name^="count"]').each(function () {
-                total_price += tax * $(this).val() * $('input[name="price[' + $(this).data('id') + ']"]').val();
+                total_price += $(this).val() * $('input[name="price[' + $(this).data('id') + ']"]').val();
             });
 
-            $('input[name="total_price"]').val(Math.round(total_price));
+            $('input[name="total_price"]').val(total_price);
         });
 
         $('input[name="acceptance"]').change(function () {
